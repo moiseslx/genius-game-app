@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399033850887",
+    "project_id": "genius-2dfe0",
+    "storage_bucket": "genius-2dfe0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399033850887:android:76388cfdef3e7bac809ea2",
+        "android_client_info": {
+          "package_name": "com.application.genius"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399033850887-dtkgshqstmha82hbu40r4vga868meku1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application.genius",
+            "certificate_hash": "c95bbe31b027da2a4e1b29aa912a7302812defb9"
+          }
+        },
+        {
+          "client_id": "399033850887-ug574bo2lt1dq2hqprdfiquhmh3qdngj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB14cHOGCRsT2X3U0s_sIsJzF7zJya2PS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399033850887-ug574bo2lt1dq2hqprdfiquhmh3qdngj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
