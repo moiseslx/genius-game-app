@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Genius</string>
+    <string name="logo_do_jogo">logo_do_jogo</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="esqueceu_a_senha">Esqueceu a senha?</string>
+    <string name="logar">logar</string>
+    <string name="criar_conta">Não te conta? Crie uma</string>
+    <string name="nome">Nome</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="bot_o_de_retorno">Botão de retorno</string>
 </resources>
