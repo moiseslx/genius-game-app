@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import com.application.genius.model.Firebase;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail;
@@ -35,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         startComponents();
-
-        auth = Firebase.getFirebaseAuth();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,13 +57,20 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
-                Intent intent = new Intent(getApplicationContext(), Test.class);
-                startActivity(intent);
+
+                startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
                 finish();
-*/
+
             }
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        auth = FirebaseAuth.getInstance();
 
     }
 
@@ -80,21 +83,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getLogin() {
-        if (inputEmail.getText().toString().isEmpty() || inputPassword.getText().toString().isEmpty()) {
+
+        String email = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Preencha todos os campos !", Toast.LENGTH_SHORT).show();
         } else {
-            auth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        // ESTOU INSTANCIANDO UMA PARA UMA CLASSE TESTE
-                        /*
-                        Intent intent = new Intent(getApplicationContext(), Test.class);
-                        startActivity(intent);
-                        finish();*/
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
 
-                        System.out.print("deu bom");
                     }
                 }
             });
