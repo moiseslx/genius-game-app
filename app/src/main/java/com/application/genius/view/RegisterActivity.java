@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        User user = new User(name, email);
+                        User user = new User(name.trim(), email.trim());
 
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 

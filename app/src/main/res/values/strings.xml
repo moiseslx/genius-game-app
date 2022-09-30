@@ -9,4 +9,7 @@
     <string name="nome">Nome</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="bot_o_de_retorno">Botão de retorno</string>
+    <string name="home">Home</string>
+    <string name="statistics">Statistics</string>
+    <string name="profile">Profile</string>
 </resources>
