@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             finish();
                                         } else {
                                             Toast.makeText(getApplicationContext(), "Erro ao cadastrar: " + task.getException(), Toast.LENGTH_SHORT).show();
