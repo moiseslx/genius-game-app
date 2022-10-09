@@ -33,23 +33,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         navigationView.setOnItemSelectedListener(item -> {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        replace(homeFragment);
-                        break;
-                    case R.id.profile:
-                        replace(profileFragment);
-                        break;
-                    case R.id.statistics:
-                        replace(statisticsFragment);
-                        break;
-                }
+            switch (item.getItemId()) {
+                case R.id.home:
+                    replace(homeFragment);
+                    break;
+                case R.id.profile:
+                    replace(profileFragment);
+                    break;
+                case R.id.statistics:
+                    replace(statisticsFragment);
+                    break;
+            }
             return true;
         });
     }
-private void replace(Fragment fragment){
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-    transaction.replace(R.id.frame,fragment);
-    transaction.commit();
-}
+
+    private void replace(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, fragment);
+        transaction.commit();
+    }
 }

@@ -82,12 +82,12 @@ public class RegisterActivity extends AppCompatActivity {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             inputName.setError("Diga seu nome!");
             inputName.requestFocus();
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             if (email.isEmpty()) {
                 inputEmail.setError("Adicione seu email...");
                 inputEmail.requestFocus();
@@ -97,17 +97,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
 
-        if (password.length() < 6){
+        if (password.length() < 6) {
             inputPassword.setError("Crie uma senha de no mínimo 6 caracters!");
             inputPassword.requestFocus();
         }
 
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             inputPassword.setError("Adicione uma senha...");
             inputPassword.requestFocus();
         }
 
-        if(name.isEmpty() || password.isEmpty() || email.isEmpty()){
+        if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Preencha todos os campos !", Toast.LENGTH_SHORT).show();
 
         } else {

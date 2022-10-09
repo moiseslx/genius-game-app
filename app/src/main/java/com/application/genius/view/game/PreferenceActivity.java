@@ -34,87 +34,87 @@ public class PreferenceActivity extends AppCompatActivity {
          * div == divisão
          * */
 
-            startComponents();
+        startComponents();
 
-            String goalN = goal.getText().toString();
+        String goalN = goal.getText().toString();
 
-            timeView.setText("30");
+        timeView.setText("30");
 
-            char [] selectOp = new char[4];
-            String time = timeView.getText().toString();
+        char[] selectOp = new char[4];
+        String time = timeView.getText().toString();
 
-            plus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    selectOp [0] = 'p';
-                    Log.i("Op", "Selected "+ plus.toString());
-                }
-            });
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectOp[0] = 'p';
+                Log.i("Op", "Selected " + plus.toString());
+            }
+        });
 
-            minus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    selectOp [1] = 'm';
-                    Log.i("Op", "Selected "+ minus.toString());
-                }
-            });
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectOp[1] = 'm';
+                Log.i("Op", "Selected " + minus.toString());
+            }
+        });
 
-            times.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    selectOp [2] = 't';
-                    Log.i("Op", "Selected "+ times.toString());
-                }
-            });
+        times.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectOp[2] = 't';
+                Log.i("Op", "Selected " + times.toString());
+            }
+        });
 
-            div.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    selectOp [3] = 'd';
-                    Log.i("Op", "Selected "+ div.toString());
-                }
-            });
+        div.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectOp[3] = 'd';
+                Log.i("Op", "Selected " + div.toString());
+            }
+        });
 
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                    timeView.setText(progress+"0");
-                }
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                timeView.setText(progress + "0");
+            }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
-                }
+            }
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
-                }
-            });
+            }
+        });
 
-            init.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        init.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                    Intent intent = new Intent(getApplicationContext(), PracticeActivity.class);
-                    intent.putExtra("OP", selectOp); //Opções + - / *
-                    intent.putExtra("GOAL", goalN); //Meta de acerto
-                    intent.putExtra("SECOND", time); //Tempo de resposta
+                Intent intent = new Intent(getApplicationContext(), PracticeActivity.class);
+                intent.putExtra("OP", selectOp); //Opções + - / *
+                intent.putExtra("GOAL", goalN); //Meta de acerto
+                intent.putExtra("SECOND", time); //Tempo de resposta
 
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 
-        @Override
-        protected void onPause() {
-            super.onPause();
-            finish();
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
-    private void startComponents(){
+    private void startComponents() {
 
         /*OPERAÇÕES*/
         plus = findViewById(R.id.btnPlus);

@@ -13,14 +13,14 @@
         android:theme="@style/Theme.Genius"
         tools:targetApi="31">
         <activity
-            android:name=".PracticeActivity"
+            android:name=".view.game.PracticeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PreferenceActivity"
+            android:name=".view.game.PreferenceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

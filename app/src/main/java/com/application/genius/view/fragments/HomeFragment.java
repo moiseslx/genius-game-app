@@ -16,12 +16,12 @@ import com.application.genius.R;
 import com.application.genius.view.game.PreferenceActivity;
 
 public class HomeFragment extends Fragment {
+
     Button btnT, btnV, btnD, btnS;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
     }
 
     @Override

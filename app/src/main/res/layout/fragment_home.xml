@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.fragments.HomeFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,28 +13,24 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         tools:ignore="UselessParent">
-
         <Button
             android:id="@+id/btnT"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
             android:text="@string/treino" />
-
         <Button
             android:id="@+id/btnV"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
             android:text="@string/versus" />
-
         <Button
             android:id="@+id/btnD"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
             android:text="@string/did_tico" />
-
         <Button
             android:id="@+id/btnS"
             android:layout_width="match_parent"
