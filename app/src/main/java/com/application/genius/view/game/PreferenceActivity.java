@@ -20,27 +20,20 @@ public class PreferenceActivity extends AppCompatActivity {
     private EditText goal;
     private SeekBar seekBar;
     private TextView timeView;
+    char[] selectOp = new char[4];
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-
-
-        /* plus == adição
-         * minus == subtração
-         * times == multiplicação
-         * div == divisão
-         * */
-
         startComponents();
 
         String goalN = goal.getText().toString();
 
         timeView.setText("30");
 
-        char[] selectOp = new char[4];
+
         String time = timeView.getText().toString();
 
         plus.setOnClickListener(new View.OnClickListener() {

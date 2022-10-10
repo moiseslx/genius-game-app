@@ -4,17 +4,15 @@ public class Calculator implements Operations {
 
     private int n001;
     private int n002;
-    private int result;
+    private int result, subResult;
     char op, opTextView;
-    private String format = "";
+    String format;
 
-    public Calculator(int n001, int n002, char op) {
+    public Calculator(int n001, int n002, char op, int subResult) {
         this.n001 = n001;
         this.n002 = n002;
         this.op = op;
-    }
-
-    public Calculator() {
+        this.subResult = subResult;
     }
 
     @Override
@@ -83,9 +81,20 @@ public class Calculator implements Operations {
             opTextView = '÷';
         }
 
-        format = (getN001() + " " + opTextView + " " + getN002() + " = " + getResult());
+        format = (getN001() + " " + opTextView + " " + getN002() + " = " + subResult);
         return format;
     }
     /*------------------------- get and set Format -------------------------*/
+
+    /*------------------------- get and set subResult -------------------------*/
+
+    public int getSubResult() {
+        return subResult;
+    }
+
+    public void setSubResult(int subResult) {
+        this.subResult = subResult;
+    }
+    /*------------------------- get and set subResult -------------------------*/
 }
 
