@@ -20,7 +20,7 @@ public class PreferenceActivity extends AppCompatActivity {
     private EditText goal;
     private SeekBar seekBar;
     private TextView timeView;
-    char[] selectOp = new char[4];
+    String op = "";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -29,17 +29,12 @@ public class PreferenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preference);
         startComponents();
 
-        String goalN = goal.getText().toString();
-
         timeView.setText("30");
-
-
-        String time = timeView.getText().toString();
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectOp[0] = 'p';
+                op = op + 'p';
                 Log.i("Op", "Selected " + plus.toString());
             }
         });
@@ -47,7 +42,7 @@ public class PreferenceActivity extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectOp[1] = 'm';
+                op = op + 'm';
                 Log.i("Op", "Selected " + minus.toString());
             }
         });
@@ -55,7 +50,7 @@ public class PreferenceActivity extends AppCompatActivity {
         times.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectOp[2] = 't';
+                op = op + 't';
                 Log.i("Op", "Selected " + times.toString());
             }
         });
@@ -63,7 +58,7 @@ public class PreferenceActivity extends AppCompatActivity {
         div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectOp[3] = 'd';
+                op = op + 'd';
                 Log.i("Op", "Selected " + div.toString());
             }
         });
@@ -91,20 +86,14 @@ public class PreferenceActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), PracticeActivity.class);
-                intent.putExtra("OP", selectOp); //Opções + - / *
-                intent.putExtra("GOAL", goalN); //Meta de acerto
-                intent.putExtra("SECOND", time); //Tempo de resposta
+                intent.putExtra("OP", op); //Opções + - / *
+                intent.putExtra("GOAL", goal.getText().toString()); //Meta de acerto
+                intent.putExtra("SECOND", timeView.getText().toString()); //Tempo de resposta
 
                 startActivity(intent);
                 finish();
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
     }
 
     private void startComponents() {
