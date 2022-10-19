@@ -1,33 +1,57 @@
 package com.application.genius.util;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 
-public class CountDown extends Thread {
+import android.widget.TextView;
+import android.widget.Toast;
 
-    private CountDownTimer countDownTimer;
-    private int millisInFuture;
-    private String countDownView;
+import com.application.genius.view.game.PreferenceActivity;
 
-    public CountDown(CountDownTimer countDownTimer, int millisInFuture) {
-        this.countDownTimer = countDownTimer;
-        this.millisInFuture = millisInFuture;
+public class CountDown extends CountDownTimer {
+
+    private TextView countDownView;
+    private Context context;
+    private long millisInFuture;
+
+    public CountDown(long millisInFuture, long countDownInterval, Context context, TextView countDownView) {
+        super(millisInFuture, countDownInterval);
+        this.context = context;
+        this.countDownView = countDownView;
     }
 
+    @Override
+    public void onTick(long l) {
+        this.millisInFuture = l;
+        countDownView.setText(getTimeFormat());
 
-    public void run(int millisInFuture) {
-        this.millisInFuture = millisInFuture;
-        countDownTimer = new CountDownTimer(millisInFuture * 1000L, 1000) {
 
-            public void onTick(long millisUntilFinished) {
-                countDownView = (String.valueOf(millisUntilFinished / 1000));
-            }
+        if (countDownView.getText().toString().equals("0")) {
+            onFinish();
+            new Activity().startActivity(new Intent(context, PreferenceActivity.class));
+        }
 
-            public void onFinish() {
-            }
-        }.start();
     }
 
-    private String getFormat(){
-        return countDownView;
+    @Override
+    public void onFinish() {
+        try {
+            finalize();
+        } catch (Throwable e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error: " + e, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String getTimeFormat() {
+        String timeFormat;
+        timeFormat = String.valueOf(getMillisInFuture() / 1000L);
+        return timeFormat;
+    }
+
+    public long getMillisInFuture() {
+        return millisInFuture;
     }
 }
