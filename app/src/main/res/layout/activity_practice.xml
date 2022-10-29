@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textColor="@color/purple_700"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,17 +22,17 @@
 
     <Button
         android:id="@+id/btnSub"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        app:icon="@drawable/ic_baseline_check_24"
+        android:layout_marginStart="8dp"
+        android:text="✔"
         app:layout_constraintBottom_toBottomOf="@+id/btn0"
         app:layout_constraintStart_toEndOf="@+id/btn0"
         app:layout_constraintTop_toTopOf="@+id/btn0" />
 
     <Button
         android:id="@+id/btn7"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:text="7"
@@ -43,7 +42,7 @@
 
     <Button
         android:id="@+id/btn8"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:text="8"
         app:layout_constraintEnd_toEndOf="@+id/btn5"
@@ -52,7 +51,7 @@
 
     <Button
         android:id="@+id/btn9"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:text="9"
@@ -62,7 +61,7 @@
 
     <Button
         android:id="@+id/btn4"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:text="4"
@@ -72,7 +71,7 @@
 
     <Button
         android:id="@+id/btn5"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:text="5"
         app:layout_constraintEnd_toEndOf="@+id/btn2"
@@ -82,7 +81,7 @@
 
     <Button
         android:id="@+id/btn6"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:text="6"
@@ -92,7 +91,7 @@
 
     <Button
         android:id="@+id/btn1"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:text="1"
@@ -102,7 +101,7 @@
 
     <Button
         android:id="@+id/btn0"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginTop="4dp"
         android:text="0"
@@ -113,12 +112,11 @@
 
     <Button
         android:id="@+id/btnClear"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
-        android:text=""
+        android:layout_marginEnd="8dp"
+        android:text="❮"
         android:visibility="invisible"
-        app:icon="@drawable/ic_baseline_backspace_24"
         app:layout_constraintBottom_toBottomOf="@+id/btn0"
         app:layout_constraintEnd_toStartOf="@+id/btn0"
         app:layout_constraintTop_toTopOf="@+id/btn0"
@@ -126,7 +124,7 @@
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginTop="64dp"
         android:text="2"
@@ -136,7 +134,7 @@
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:text="3"
@@ -148,21 +146,19 @@
         android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_700"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewGoal"
+        android:id="@+id/goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="10/10"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

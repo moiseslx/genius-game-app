@@ -1,19 +1,15 @@
 package com.application.genius.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.CountDownTimer;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.application.genius.view.game.PreferenceActivity;
-
 public class CountDown extends CountDownTimer {
 
-    private TextView countDownView;
-    private Context context;
+    private final TextView countDownView;
+    private final Context context;
     private long millisInFuture;
 
     public CountDown(long millisInFuture, long countDownInterval, Context context, TextView countDownView) {
@@ -26,19 +22,12 @@ public class CountDown extends CountDownTimer {
     public void onTick(long l) {
         this.millisInFuture = l;
         countDownView.setText(getTimeFormat());
-
-
-        if (countDownView.getText().toString().equals("0")) {
-            onFinish();
-            new Activity().startActivity(new Intent(context, PreferenceActivity.class));
-        }
-
     }
 
     @Override
     public void onFinish() {
         try {
-            finalize();
+            Toast.makeText(context, "Acabou", Toast.LENGTH_SHORT).show();
         } catch (Throwable e) {
             e.printStackTrace();
             Toast.makeText(context, "Error: " + e, Toast.LENGTH_SHORT).show();

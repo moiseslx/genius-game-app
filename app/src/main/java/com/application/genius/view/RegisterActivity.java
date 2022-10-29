@@ -3,33 +3,39 @@ package com.application.genius.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.application.genius.R;
 import com.application.genius.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText inputName;
-    private EditText inputEmail;
-    private EditText inputPassword;
+    private EditText inputUserName, inputName, inputEmail, inputPassword;
 
     private Button btnSignUp;
-    private ImageView btnReturn;
+    private ImageButton btnReturn;
+    private ProgressBar progressBar;
 
     private FirebaseAuth auth;
 
@@ -38,13 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        auth = FirebaseAuth.getInstance();
+
         startComponents();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
-
+                register(view);
             }
         });
 
@@ -64,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseApp.initializeApp(getApplicationContext());
 
     }
 
@@ -72,20 +79,18 @@ public class RegisterActivity extends AppCompatActivity {
         inputName = findViewById(R.id.editTextName);
         inputEmail = findViewById(R.id.editTextEmailR);
         inputPassword = findViewById(R.id.editTextPasswordR);
+        inputUserName = findViewById(R.id.editTextUserName);
 
         btnSignUp = findViewById(R.id.btnSignUp);
         btnReturn = findViewById(R.id.btnReturn);
+        progressBar = findViewById(R.id.progressBar2);
     }
 
-    private void register() {
-        String name = inputName.getText().toString();
+    private void register(View view) {
+        String userName = inputUserName.getText().toString();
+        String fullName = inputName.getText().toString();
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-
-        if (name.isEmpty()) {
-            inputName.setError("Diga seu nome!");
-            inputName.requestFocus();
-        }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             if (email.isEmpty()) {
@@ -97,42 +102,50 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
 
-        if (password.length() < 6) {
+        if (password.length() < 8) {
             inputPassword.setError("Crie uma senha de no mínimo 6 caracters!");
             inputPassword.requestFocus();
         }
 
-        if (password.isEmpty()) {
-            inputPassword.setError("Adicione uma senha...");
-            inputPassword.requestFocus();
-        }
-
-        if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
+        if (fullName.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Preencha todos os campos !", Toast.LENGTH_SHORT).show();
 
         } else {
+            progressBar.setVisibility(View.VISIBLE);
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        User user = new User(name.trim(), email.trim());
+                        User user = new User(userName.trim(), fullName.trim(), email.trim());
 
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
                         firebaseDatabase.getReference("Users").
-                                child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                             finish();
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Erro ao cadastrar: " + task.getException(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
+                    } else {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        String err;
+                        try {
+                            throw Objects.requireNonNull(task.getException());
+                        } catch (FirebaseAuthUserCollisionException e) {
+                            err = "Está conta já foi cadastrada!";
+                        } catch (Exception e) {
+                            err = "Erro ao cadastrar";
+                        }
+                        Toast.makeText(getApplicationContext(), err, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

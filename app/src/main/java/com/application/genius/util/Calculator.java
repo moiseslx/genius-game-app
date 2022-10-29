@@ -1,72 +1,41 @@
 package com.application.genius.util;
 
-public class Calculator implements Operations {
+import android.annotation.SuppressLint;
+import android.widget.TextView;
 
-    int n001;
-    int n002;
-    private int result;
-    int subResult;
-    char op, opTextView;
-    String format;
+public class Calculator implements Operations{
 
-    public Calculator(int n001, int n002,char op,int subResult) {
-        this.n001 = n001;
-        this.n002 = n002;
-        this.op = op;
+    RandomNumber randomNumber = new RandomNumber();
+    int n001 = randomNumber.getN00();
+    int n002 = randomNumber.getN00();
+    int result, subResult;
+    TextView equation;
+
+    public Calculator(int subResult) {
         this.subResult = subResult;
     }
 
     /*------------------------- get Result -------------------------*/
     public int getResult() {
-        if (op == 'p') {
-            result = plus(n001,n002);
-        } else if (op == 'm') {
-            result = minus(n001,n002);
-        } else if (op == 't') {
-            result = times(n001,n002);
-        } else if (op == 'd') {
-            result = div(n001,n002);;
-        }
+        result = multiply(n001,n002);
         return result;
     }
     /*------------------------- get Result -------------------------*/
 
     /*------------------------- get and set Format -------------------------*/
-    public String getFormat() {
+    @SuppressLint("SetTextI18n")
+    public void getFormat(String number) {
+        equation.setText((n001) +" "+" × "+" "+ (n002) + " = " + number);
+    }
 
-        if (op == 'p') {
-            opTextView = '+';
-        } else if (op == 'm') {
-            opTextView = '-';
-        } else if (op == 't') {
-            opTextView = '×';
-        } else if (op == 'd') {
-            opTextView = '÷';
-        }
-
-        format = (((n001) +" "+opTextView+" "+ (n002) + " = "));
-        return format;
+    public void setEquation(TextView equation) {
+        this.equation = equation;
     }
     /*------------------------- get and set Format -------------------------*/
 
     @Override
-    public int plus(Integer n001, Integer n002) {
-        return result = (n001 + n002);
-    }
-
-    @Override
-    public int minus(Integer n001, Integer n002) {
-        return result = (n001 - n002);
-    }
-
-    @Override
-    public int times(Integer n001, Integer n002) {
-        return result = (n001 * n002);
-    }
-
-    @Override
-    public int div(Integer n001, Integer n002) {
-        return result = (n001 / n002);
+    public int multiply(Integer n001, Integer n002) {
+        return n001 * n002;
     }
 }
 

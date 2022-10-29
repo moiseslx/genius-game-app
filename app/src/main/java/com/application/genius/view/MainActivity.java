@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.icu.lang.UCharacter;
 import android.os.Bundle;
 
 import com.application.genius.R;
@@ -18,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
 
     HomeFragment homeFragment = new HomeFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
     StatisticsFragment statisticsFragment = new StatisticsFragment();
+    ProfileFragment profileFragment = new ProfileFragment();
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -30,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.bottomNavigationView);
         navigationView.setSelectedItemId(R.id.home);
         replace(homeFragment);
-
 
         navigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

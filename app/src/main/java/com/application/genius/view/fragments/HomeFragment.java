@@ -41,12 +41,6 @@ public class HomeFragment extends Fragment {
 
         btnT.setOnClickListener(view -> startActivity(new Intent(getContext(), PreferenceActivity.class)));
 
-        btnV.setOnClickListener(view -> startActivity(new Intent(getContext(), PreferenceActivity.class)));
-
-        btnD.setOnClickListener(view -> startActivity(new Intent(getContext(), PreferenceActivity.class)));
-
-        btnS.setOnClickListener(view -> startActivity(new Intent(getContext(), PreferenceActivity.class)));
-
         return  root;
     }
 }

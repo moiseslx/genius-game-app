@@ -1,32 +1,34 @@
 package com.application.genius.model;
 
 public class User {
-    private String id;
-    private String name;
+    private String username;
+    private String fullName;
     private String email;
 
-    public User(String name, String email) {
-        this.name = name;
+    public User(String id, String name, String email) {
+        this.username = id;
+        this.fullName = name;
         this.email = email;
     }
 
     public User() {
+
     }
 
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

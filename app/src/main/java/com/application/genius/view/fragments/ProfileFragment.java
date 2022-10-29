@@ -1,82 +1,102 @@
 package com.application.genius.view.fragments;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.application.genius.R;
+import com.application.genius.model.User;
+import com.application.genius.view.LoginActivity;
+import com.application.genius.view.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.DatabaseMetaData;
+import java.util.Objects;
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Button signOut;
+    View root;
+    private TextView fullName, email, username;
+    private FirebaseDatabase database;
+    private FirebaseAuth auth;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        database = FirebaseDatabase.getInstance();
+        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        dataSnapshot();
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        root = inflater.inflate(R.layout.fragment_profile, container, false);
+        signOut = root.findViewById(R.id.signOut);
+
+        fullName = root.findViewById(R.id.textViewFullName);
+        email = root.findViewById(R.id.textViewEmail);
+        username = root.findViewById(R.id.textViewUserName);
+
+        signOut.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            signOut();
+        });
+        return root;
     }
 
-    /*
-     * TEST DE PRODUCAO
-     * */
-    @Override
-    public void onStart() {
-        super.onStart();
-        Toast.makeText(getContext(), "onStart Profile", Toast.LENGTH_SHORT).show();
+    public void signOut() {
+        startActivity(new Intent(getContext(), LoginActivity.class));
+        requireActivity().finish();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        Toast.makeText(getContext(), "onPause Profile", Toast.LENGTH_SHORT).show();
+    public void dataSnapshot() {
+        if (database != null) {
+            database.getReference().child("Users").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    assert user != null;
+                    fullName.setText(user.getFullName());
+                    email.setText(user.getEmail());
+                    username.setText(user.getUsername());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        } else {
+            database.setPersistenceEnabled(true);
+        }
+
     }
 }
