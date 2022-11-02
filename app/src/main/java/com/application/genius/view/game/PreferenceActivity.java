@@ -88,7 +88,9 @@ public class PreferenceActivity extends AppCompatActivity {
         if (goal >= 30){
             goal = 30;
             goalView.setText(String.valueOf(goal));
-            Toast.makeText(getApplicationContext(), "Você atingiu o limite de questões!", Toast.LENGTH_SHORT).show();
+        } else if (goal <= 5){
+            goal = 5;
+            goalView.setText(String.valueOf(goal));
         }
     }
 

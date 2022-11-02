@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.provider.ContactsContract;
@@ -52,6 +53,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         dataSnapshot();
     }
 
@@ -79,12 +81,10 @@ public class ProfileFragment extends Fragment {
     }
 
     public void dataSnapshot() {
-        if (database != null) {
             database.getReference().child("Users").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
-                    assert user != null;
                     fullName.setText(user.getFullName());
                     email.setText(user.getEmail());
                     username.setText(user.getUsername());
@@ -94,9 +94,5 @@ public class ProfileFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-        } else {
-            database.setPersistenceEnabled(true);
-        }
-
     }
 }

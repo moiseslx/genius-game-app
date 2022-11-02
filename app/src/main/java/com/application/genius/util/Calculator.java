@@ -37,5 +37,9 @@ public class Calculator implements Operations{
     public int multiply(Integer n001, Integer n002) {
         return n001 * n002;
     }
+
+    public  String getResultFormat(){
+        return (n001) +" "+" × "+" "+ (n002) + " = " + getResult();
+    }
 }
 

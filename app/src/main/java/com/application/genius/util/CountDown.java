@@ -26,12 +26,6 @@ public class CountDown extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        try {
-            Toast.makeText(context, "Acabou", Toast.LENGTH_SHORT).show();
-        } catch (Throwable e) {
-            e.printStackTrace();
-            Toast.makeText(context, "Error: " + e, Toast.LENGTH_SHORT).show();
-        }
     }
 
     private String getTimeFormat() {

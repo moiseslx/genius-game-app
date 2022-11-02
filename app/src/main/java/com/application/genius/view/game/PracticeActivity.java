@@ -13,16 +13,20 @@ import android.widget.Toast;
 import com.application.genius.R;
 import com.application.genius.util.Calculator;
 import com.application.genius.util.CountDown;
+import com.application.genius.view.RegisterActivity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PracticeActivity extends AppCompatActivity {
 
-    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btnClear, btnSub; //OK
+    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btnClear, btnSub;
 
     private TextView equation, textViewGoal;
 
     private Calculator calculator;
+
+    ArrayList<String> results = new ArrayList<String>();
 
     int time, goal;
 
@@ -61,15 +65,23 @@ public class PracticeActivity extends AppCompatActivity {
                 checker();
                 cycle();
             } else {
-                Toast.makeText(getApplicationContext(), "INCORRECT", Toast.LENGTH_SHORT).show();
+                if (!number.equals("")){
+                    Toast.makeText(getApplicationContext(), "INCORRECT", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     public void checker() {
         if (s + n == goal) {
-            startActivity(new Intent(getApplicationContext(), ResultActivity.class));
-            Toast.makeText(getApplicationContext(), "O jogo acabou", Toast.LENGTH_SHORT).show();
+            equation.setVisibility(View.INVISIBLE);
+            countDownView.setVisibility(View.INVISIBLE);
+            countDown.cancel();
+            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+            intent.putExtra("TOTAL", String.valueOf(goal));
+            intent.putExtra("CORRECT", String.valueOf(s));
+            intent.putStringArrayListExtra("LIST", results);
+            startActivity(intent);
             finish();
         }
     }
@@ -78,12 +90,14 @@ public class PracticeActivity extends AppCompatActivity {
         calculator = new Calculator(numberInt);
         calculator.setEquation(equation);
         calculator.getFormat(number);
+        results.add(calculator.getResultFormat());
         countDown = new CountDown(time * INTERVAL, INTERVAL, getApplicationContext(), countDownView) {
             @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 super.onFinish();
                 calculator = new Calculator(numberInt);
+                results.add(calculator.getResultFormat());
                 number = "";
                 numberInt = 0;
                 calculator.setEquation(equation);

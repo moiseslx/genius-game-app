@@ -2,6 +2,7 @@ package com.application.genius.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
@@ -43,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         auth = FirebaseAuth.getInstance();
 
@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register(view);
+                        register(view);
             }
         });
 
@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
 
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             if (email.isEmpty()) {
                 inputEmail.setError("Adicione seu email...");
@@ -109,12 +110,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (fullName.isEmpty() || password.isEmpty() || email.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Preencha todos os campos !", Toast.LENGTH_SHORT).show();
-
         } else {
             progressBar.setVisibility(View.VISIBLE);
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -130,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getApplicationContext(), "Cadastrado com sucesso!", Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            startActivity(new Intent(getApplicationContext(), SplashScreenActivity.class));
                                             finish();
                                         }
                                     }
@@ -142,7 +141,8 @@ public class RegisterActivity extends AppCompatActivity {
                             throw Objects.requireNonNull(task.getException());
                         } catch (FirebaseAuthUserCollisionException e) {
                             err = "Está conta já foi cadastrada!";
-                        } catch (Exception e) {
+                        }
+                        catch (Exception e) {
                             err = "Erro ao cadastrar";
                         }
                         Toast.makeText(getApplicationContext(), err, Toast.LENGTH_SHORT).show();
