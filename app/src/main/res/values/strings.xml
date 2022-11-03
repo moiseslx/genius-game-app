@@ -39,4 +39,18 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hora_de_estudar">Hora de estudar!</string>
+    <string name="para_aprendizagem">PARA APRENDIZAGEM</string>
+    <string name="__4">4×</string>
+    <string name="conte_dos">+ conteúdos</string>
+    <string name="como_funciona">Como funciona?</string>
+    <string name="_10">10×</string>
+    <string name="__9">9×</string>
+    <string name="__5">5×</string>
+    <string name="__6">6×</string>
+    <string name="__1">1×</string>
+    <string name="__2">2×</string>
+    <string name="__7">7×</string>
+    <string name="__8">8×</string>
+    <string name="__3">3×</string>
 </resources>

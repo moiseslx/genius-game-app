@@ -1,16 +1,16 @@
 package com.application.genius.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.CountDownTimer;
 
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class CountDown extends CountDownTimer {
 
     private final TextView countDownView;
-    private final Context context;
     private long millisInFuture;
+    Context context;
 
     public CountDown(long millisInFuture, long countDownInterval, Context context, TextView countDownView) {
         super(millisInFuture, countDownInterval);
@@ -18,10 +18,11 @@ public class CountDown extends CountDownTimer {
         this.countDownView = countDownView;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onTick(long l) {
         this.millisInFuture = l;
-        countDownView.setText(getTimeFormat());
+        countDownView.setText(" "+getTimeFormat()+" ");
     }
 
     @Override
@@ -30,7 +31,7 @@ public class CountDown extends CountDownTimer {
 
     private String getTimeFormat() {
         String timeFormat;
-        timeFormat = String.valueOf(getMillisInFuture() / 1000L);
+        timeFormat = String.valueOf((getMillisInFuture() / 1000L));
         return timeFormat;
     }
 

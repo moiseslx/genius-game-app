@@ -3,14 +3,12 @@ package com.application.genius.view.game;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.application.genius.R;
-import com.application.genius.view.MainActivity;
 
 public class DidacticActivity extends AppCompatActivity {
     private Button btnX1, btnX2, btnX3, btnX4, btnX5, btnX6, btnX7, btnX8, btnX9, btnX10, btnCf, btnPc;

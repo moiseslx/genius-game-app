@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Activity"
+    android:orientation="vertical"
     tools:context=".view.LoginActivity">
 
     <ImageView

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class PracticeActivity extends AppCompatActivity {
 
     private Calculator calculator;
 
-    ArrayList<String> results = new ArrayList<String>();
+    ArrayList<String> results = new ArrayList<>();
 
     int time, goal;
 
@@ -61,7 +62,7 @@ public class PracticeActivity extends AppCompatActivity {
                 number = "";
                 countDown.cancel();
                 s++;
-                textViewGoal.setText(s + " | " + n);
+                textViewGoal.setText(" "+s + " | " + n+" ");
                 checker();
                 cycle();
             } else {
@@ -70,6 +71,12 @@ public class PracticeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        countDown.cancel();
     }
 
     public void checker() {
