@@ -44,7 +44,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             } else {
                 FirebaseAuth.getInstance().sendPasswordResetEmail(email);
 
-                Toast.makeText(getApplicationContext(), "Enviado...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Verifique seu email", Toast.LENGTH_SHORT).show();
             }
         });
     }

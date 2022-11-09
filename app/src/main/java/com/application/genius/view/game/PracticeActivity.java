@@ -62,7 +62,7 @@ public class PracticeActivity extends AppCompatActivity {
                 number = "";
                 countDown.cancel();
                 s++;
-                textViewGoal.setText(" "+s + " | " + n+" ");
+                textViewGoal.setText("  "+s + " | " + n+"  ");
                 checker();
                 cycle();
             } else {

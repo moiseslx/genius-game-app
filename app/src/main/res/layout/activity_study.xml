@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Activity"
-    tools:context=".view.game.StudyActivity">
+    tools:context=".view.didactic.StudyActivity">
 
     <ImageView
         android:id="@+id/btnReturn0"

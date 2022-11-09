@@ -14,8 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.application.genius.R;
-import com.application.genius.view.game.DidacticActivity;
+import com.application.genius.view.didactic.DidacticActivity;
 import com.application.genius.view.game.PreferenceActivity;
+import com.application.genius.view.multiplayer.SearchActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment {
 
         btnT.setOnClickListener(view -> startActivity(new Intent(getContext(), PreferenceActivity.class)));
         btnD.setOnClickListener(view -> startActivity(new Intent(getContext(), DidacticActivity.class)));
+        btnV.setOnClickListener(view -> startActivity(new Intent(getContext(), SearchActivity.class)));
         return  root;
     }
 }

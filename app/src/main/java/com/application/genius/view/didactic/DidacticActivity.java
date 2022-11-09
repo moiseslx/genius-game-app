@@ -1,9 +1,8 @@
-package com.application.genius.view.game;
+package com.application.genius.view.didactic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,7 +61,7 @@ public class DidacticActivity extends AppCompatActivity {
         });
 
         btnCf.setOnClickListener(v -> {
-
+            startActivity(new Intent(getApplicationContext(), InstructionsActivity.class));
         });
 
         btnPc.setOnClickListener(v -> {

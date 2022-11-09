@@ -7,8 +7,6 @@
     <string name="logar">logar</string>
     <string name="criar_conta">Criar conta</string>
     <string name="nome"> Nome</string>
-    <string name="cadastrar">Cadastrar</string>
-    <string name="bot_o_de_retorno">Botão de retorno</string>
     <string name="home">Home</string>
     <string name="statistics">Statistics</string>
     <string name="profile">Profile</string>
@@ -24,10 +22,6 @@
     <string name="_1">1</string>
     <string name="_2">2</string>
     <string name="_3">3</string>
-    <string name="treino">treino</string>
-    <string name="versus">versus</string>
-    <string name="did_tico">didático</string>
-    <string name="sobre">sobre</string>
     <string name="username">Username</string>
     <string name="ok">OK</string>
     <string name="title_activity_didactic">DidacticActivity</string>
@@ -36,7 +30,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="hora_de_estudar">Hora de estudar!</string>

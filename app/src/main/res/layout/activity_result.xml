@@ -41,17 +41,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textViewEquations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/secular_one_regular"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMessage" />
-
-    <TextView
         android:id="@+id/textViewMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +50,28 @@
         app:layout_constraintEnd_toEndOf="@+id/textViewResultMessage"
         app:layout_constraintStart_toStartOf="@+id/textViewResultMessage"
         app:layout_constraintTop_toBottomOf="@+id/textViewResultMessage" />
+
+    <ScrollView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnOk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMessage">
+
+        <TextView
+            android:id="@+id/textViewEquations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/secular_one_regular"
+            android:gravity="center_vertical"
+            android:textSize="20sp" />
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

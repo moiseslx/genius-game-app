@@ -18,28 +18,28 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
-            android:text="@string/treino" />
+            android:text="treino" />
         <Button
             android:id="@+id/btnV"
             style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
-            android:text="@string/versus" />
+            android:text="multiplayer" />
         <Button
             android:id="@+id/btnD"
             style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
-            android:text="@string/did_tico" />
+            android:text="didático" />
         <Button
             android:id="@+id/btnS"
             style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_margin="15dp"
-            android:text="@string/sobre" />
+            android:text="sobre"/>
     </LinearLayout>
 
 </FrameLayout>
